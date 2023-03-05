@@ -1,0 +1,22 @@
+:root {
+  --primary: #009cff;
+  --light: #f3f6f9;
+  --dark: #191c24;
+}
+
+body {
+  margin: 0;
+  font-family: "Heebo", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+svg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
