@@ -17,6 +17,7 @@ CREATE TABLE member (
   mem_penalty INT,
   mem_cr_acc DATE
 );
+ 
 
 
 CREATE TABLE librarian (
