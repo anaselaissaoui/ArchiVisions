@@ -23,7 +23,7 @@
         <div class="container-fluid bg-light px-5">
             <div class="align-items-center d-flex justify-content-between px-5 py-3">
                 <a href="./index.php"><img src="./img/logo1.png" alt="" height="60px"></a>
-                <button class="btn btn-primary m-2 px-4"><a href="./signup.php"></a>Sign Up</button>
+                <a href="./signup.php"><button class="btn btn-primary m-2 px-4">Sign Up</button></a>
             </div>
         </div>
     </header>
@@ -31,8 +31,8 @@
     <main class="container">
         <div class="p-4" style="position: relative;">
             <div class="mt-5" style="position: absolute; z-index: 1;">
-                <h1 style="font-size: 4rem;">Borrow <span class="text-primary">your</span><br>Favorite<span class="text-primary">Book</span><br>From <span class="text-primary">Here</span></h1>
-                <button class="btn btn-primary mt-5 px-5"><a href="./signup.php"></a>Register Now</button>
+                <h1 style="font-size: 4rem;">Borrow <span class="text-primary">Your</span><br>Favorite <span class="text-primary">Book</span><br>From <span class="text-primary">Here</span></h1>
+                <a href="./signup.php"><button class="btn btn-primary mt-5 px-5">Register Now</button></a>
             </div>
 
 
