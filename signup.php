@@ -22,7 +22,7 @@
     <header class="bg-light">
         <div class="container-fluid px-5">
             <div class="align-items-center d-flex justify-content-between px-5 py-3">
-                <a href="./index.php"><img src="./img/logo1.png" alt="" height="60px"></a>
+                <a href="./index.html"><img src="./img/logo1.png" alt="" height="60px"></a>
                 <a href="./signin.php"><button class="btn btn-primary m-2 px-4">Sign In</button></a>
             </div>
         </div>
