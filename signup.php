@@ -16,7 +16,7 @@
     <title>ArchiVisions - Sign Up</title>
 </head>
 
-<body style="background-image:url('./img/background_signup.jpg'); background-size:cover; background-repeat: no-repeat; height:100vh;">
+<body>
 
 
     <header class="bg-light">
@@ -29,14 +29,105 @@
     </header>
 
     <main class="container">
-        
+    <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                    <h6 class="section-title text-center text-primary text-uppercase">Join Us</h6>
+                    <h1 class="mb-5">Explore, Create, Learn: <span class="text-primary text-uppercase">Borrow Works!</span></h1>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-6 text-end">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="./img/image1.jpg" style="margin-top: 25%; visibility: visible; animation-delay: 0.1s; animation-name: zoomIn;">
+                            </div>
+                            <div class="col-6 text-start">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="./img/image2.jpg" style="visibility: visible; animation-delay: 0.3s; animation-name: zoomIn;">
+                            </div>
+                            <div class="col-6 text-end">
+                                <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="./img/image3.jpg" style="visibility: visible; animation-delay: 0.5s; animation-name: zoomIn;">
+                            </div>
+                            <div class="col-6 text-start">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="./img/image4.jpg" style="visibility: visible; animation-delay: 0.7s; animation-name: zoomIn;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" placeholder="Name" required>
+                                            <label for="name">Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="username" placeholder="Username" required>
+                                            <label for="username">Username</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="id" placeholder="ID Number" required>
+                                            <label for="id">ID Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="address" placeholder="Address" required>
+                                            <label for="address">Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" id="phoneNumber" placeholder="Phone Number" required>
+                                            <label for="phoneNumber">Phone Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control datetimepicker-input" id="birthday" placeholder="Birthday" required>
+                                            <label for="birthday">Birthday</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                            <label for="email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                                            <label for="password">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control" id="repassword" placeholder="Confirm - Password" required>
+                                            <label for="repassword">Confirm - Password</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Register Now</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
     </main>
 
     <div>
-        
+
     </div>
 
 </body>
