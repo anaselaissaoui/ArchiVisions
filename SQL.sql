@@ -62,14 +62,14 @@ CREATE TABLE loan (
 
 INSERT INTO works (work_title, work_author, work_img, work_state, work_type, work_pub_d, work_purch_d, work_pages, lib_id)
 VALUES 
-('The Great Gatsby', 'F. Scott Fitzgerald', 'great_gatsby.jpg', 'Good condition', 'Book', '1925-04-10', '2022-01-15', 180, 1),
-('To Kill a Mockingbird', 'Harper Lee', 'to_kill_a_mockingbird.jpg', 'New', 'Book', '1960-07-11', '2022-02-22', 324, 1),
-('Pride and Prejudice', 'Jane Austen', 'pride_and_prejudice.jpg', 'Acceptable', 'Book', '1813-01-28', '2022-03-11', 432, 1),
-('1984', 'George Orwell', '1984.jpg', 'Good condition', 'Book', '1949-06-08', '2022-01-01', 328, 1),
-('Animal Farm', 'George Orwell', 'animal_farm.jpg', 'Good condition', 'Book', '1945-08-17', '2022-02-14', 144, 1),
-('Brave New World', 'Aldous Huxley', 'brave_new_world.jpg', 'Acceptable', 'Book', '1932-05-01', '2022-03-09', 288, 1),
-('The Catcher in the Rye', 'J.D. Salinger', 'catcher_in_the_rye.jpg', 'New', 'Book', '1951-07-16', '2022-01-12', 224, 1),
-('Lord of the Flies', 'William Golding', 'lord_of_the_flies.jpg', 'Good condition', 'Book', '1954-09-17', '2022-02-27', 224, 1),
+('The Great Gatsby', 'F. Scott Fitzgerald', './img/The_Great_Gatsby_10.jpg', 'Good condition', 'Book', '1925-04-10', '2022-01-15', 180, 1),
+('To Kill a Mockingbird', 'Harper Lee', './img/to_kill_a_mockingbird.jpg', 'New', 'Book', '1960-07-11', '2022-02-22', 324, 1),
+('Pride and Prejudice', 'Jane Austen', './img/pride_and_prejudice.jpg', 'Acceptable', 'Book', '1813-01-28', '2022-03-11', 432, 1),
+('1984', 'George Orwell', '1984.jpg', './img/Good condition', 'Book', '1949-06-08', '2022-01-01', 328, 1),
+('Animal Farm', 'George Orwell', './img/animal_farm.jpg', 'Good condition', 'Book', '1945-08-17', '2022-02-14', 144, 1),
+('Brave New World', 'Aldous Huxley', './img/brave_new_world.jpg', 'Acceptable', 'Book', '1932-05-01', '2022-03-09', 288, 1),
+('The Catcher in the Rye', 'J.D. Salinger', './img/catcher_in_the_rye.jpg', 'New', 'Book', '1951-07-16', '2022-01-12', 224, 1),
+('Lord of the Flies', 'William Golding', './img/lord_of_the_flies.jpg', 'Good condition', 'Book', '1954-09-17', '2022-02-27', 224, 1),
 ('Of Mice and Men', 'John Steinbeck', 'of_mice_and_men.jpg', 'Acceptable', 'Book', '1937-07-07', '2022-03-06', 112, 1),
 ('The Outsiders', 'S.E. Hinton', 'the_outsiders.jpg', 'Good condition', 'Book', '1967-04-24', '2022-01-29', 192, 1),
 ("The Lord of the Rings", "J.R.R. Tolkien", "https://images-na.ssl-images-amazon.com/images/I/51SOFvoWttL._SX331_BO1,204,203,200_.jpg", "New", "Book", "1954-07-29", "2022-02-15", 1178, 1),
