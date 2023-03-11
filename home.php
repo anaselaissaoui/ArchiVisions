@@ -2,6 +2,10 @@
 
 session_start();
 require "database.php";
+$content_query = "SELECT * FROM works WHERE work_dispo = 1";
+$content = $conn->prepare($content_query);
+$content->execute();
+$results = $content->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +16,9 @@ require "database.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://kit.fontawesome.com/f06fa41670.css" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
@@ -30,8 +35,8 @@ require "database.php";
                 <a href="./index.html"><img src="./img/logo1.png" alt="" height="60px"></a>
             </div>
 
-            <form class="d-flex w-25 ms-auto">
-                <input class="form-control border-0" type="search" placeholder="Search">
+            <form method="post" class="d-flex w-25 ms-auto">
+                <input class="form-control border-0" type="search" id="search" placeholder="Search">
             </form>
             <div class="navbar-nav align-items-center ms-auto">
                 <div class="nav-item dropdown">
@@ -50,27 +55,74 @@ require "database.php";
     </header>
 
     <main class="container pt-4 px-4">
-  <div class="row row-cols-1 row-cols-md-4 g-4">
-    <?php
-    $content = $conn->query("SELECT * FROM works");
-    while ($row = $content->fetch()) {
-      echo '<div class="col">
-              <div class="card h-100 border-primary border-1 shadow-lg">
-              
-                <img src="' . $row['work_img'] . '" class="card-img-top img-fluid" style="height: 350px; object-fit: cover;" alt="">
-                <div class="card-body mt_auto">
-                  <h5 class="card-title text-primary">' . $row['work_title'] . '</h5>
-                  <p class="card-text">' . $row['work_author'] . '</p>
+
+        <div class="container my-5  px-5">
+        <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="bi bi-diagram-3-fill text-primary" style="font-size: 3rem;"></i>
+                            <div class="ms-3">
+                                <p class="mb-2" style="color:#757575;">Available Items</p>
+                                <h6 class="mb-0" style="color:#009cff;"><?php echo (count($results)); ?></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="bi bi-graph-up-arrow text-primary" style="font-size: 3rem;"></i>
+                            <div class="ms-3">
+                                <p class="mb-2" style="color:#757575;">Available Reservations</p>
+                                <h6 class="mb-0">$1234</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="bi bi-file-earmark-arrow-up-fill text-primary" style="font-size: 3rem;"></i>
+                            <div class="ms-3">
+                                <p class="mb-2" style="color:#757575;">Open Reservations</p>
+                                <h6 class="mb-0">$1234</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="bi bi-archive-fill text-primary" style="font-size: 3rem;"></i>
+                            <div class="ms-3">
+                                <p class="mb-2" style="color:#757575;">Borrowed</p>
+                                <h6 class="mb-0">$1234</h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer d-flex align-items-center justify-content-center">
-                <a href="booking.php" class="btn btn-primary me-3">Book</a>
-                <a href="details.php?item_id='.$row['work_id'].' class="btn btn-outline-primary">Details</a>
-                  </div>
-              </div>
-            </div>';
-    }
-    ?>
-  </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="search-results">
+            <?php
+
+            if (count($results) > 0) {
+                foreach ($results as $row) {
+                    echo '<div class="col">
+                      <div class="card h-100 border-primary border-1 shadow-lg">
+                        <img src="' . $row['work_img'] . '" class="card-img-top img-fluid" style="height: 350px; object-fit: cover;" alt="">
+                        <div class="card-body mt_auto">
+                          <h5 class="card-title text-primary">' . $row['work_title'] . '</h5>
+                          <p class="card-text">' . $row['work_author'] . '</p>
+                        </div>
+                        <div class="card-footer d-flex align-items-center justify-content-center">
+                          <a href="booking.php" class="btn btn-primary me-3">Book</a>
+                          <a href="details.php?item_id=' . $row['work_id'] . '"  class="btn btn-outline-primary" style="text-decoration:none;">Details</a>
+                        </div>
+                      </div>
+                    </div>';
+                }
+            } else {
+                echo "No Results Found";
+            }
+            ?>
+
+
+        </div>
 
 
 
@@ -90,17 +142,33 @@ require "database.php";
             </div>
         </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#search').keyup(function() {
+                var search = $(this).val();
+                $.ajax({
+                    type: 'POST',
+                    url: 'search.php', // replace with the file that processes the search query
+                    data: {
+                        search: search
+                    },
+                    success: function(response) {
+                        $('#search-results').html(response);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 
 </html>
 
 <style>
-   
-   .card:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-  }
+    .card:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
 </style>
-
-
