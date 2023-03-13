@@ -70,7 +70,5 @@ VALUES
 ('Brave New World', 'Aldous Huxley', './img/brave_new_world.jpg', 'Acceptable', 'Book', '1932-05-01', '2022-03-09', 288, 1),
 ('The Catcher in the Rye', 'J.D. Salinger', './img/catcher_in_the_rye.jpg', 'New', 'Book', '1951-07-16', '2022-01-12', 224, 1),
 ('Lord of the Flies', 'William Golding', './img/lord_of_the_flies.jpg', 'Good condition', 'Book', '1954-09-17', '2022-02-27', 224, 1),
-('Of Mice and Men', 'John Steinbeck', 'of_mice_and_men.jpg', 'Acceptable', 'Book', '1937-07-07', '2022-03-06', 112, 1),
-('The Outsiders', 'S.E. Hinton', 'the_outsiders.jpg', 'Good condition', 'Book', '1967-04-24', '2022-01-29', 192, 1),
-("The Lord of the Rings", "J.R.R. Tolkien", "https://images-na.ssl-images-amazon.com/images/I/51SOFvoWttL._SX331_BO1,204,203,200_.jpg", "New", "Book", "1954-07-29", "2022-02-15", 1178, 1),
-("Invisible Man", "Ralph Ellison", "https://images-na.ssl-images-amazon.com/images/I/51YqBCzgFwL._SX329_BO1,204,203,200_.jpg", "Assez usé", "Book", "1952-04-14", "2022-03-01", 608, 1);
+
+

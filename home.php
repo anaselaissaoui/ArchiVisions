@@ -2,8 +2,18 @@
 
 session_start();
 require "database.php";
-$content_query = "SELECT * FROM works WHERE work_dispo = 1";
-$content = $conn->prepare($content_query);
+if (isset($_POST['btnradio'])) {
+    $selected_type = $_POST['btnradio'];
+} else {
+    $selected_type = 'ALL';
+}
+
+if ($selected_type == 'ALL') {
+    $query = "SELECT * FROM works";
+} else {
+    $query = "SELECT * FROM works WHERE worke_dispo= 1 AND work_type = '$selected_type'";
+}
+$content = $conn->prepare($query);
 $content->execute();
 $results = $content->fetchAll();
 ?>
@@ -57,44 +67,65 @@ $results = $content->fetchAll();
     <main class="container pt-4 px-4">
 
         <div class="container my-5  px-5">
-        <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+            <div class="row g-4">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                         <i class="bi bi-diagram-3-fill text-primary" style="font-size: 3rem;"></i>
-                            <div class="ms-3">
-                                <p class="mb-2" style="color:#757575;">Available Items</p>
-                                <h6 class="mb-0" style="color:#009cff;"><?php echo (count($results)); ?></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="bi bi-graph-up-arrow text-primary" style="font-size: 3rem;"></i>
-                            <div class="ms-3">
-                                <p class="mb-2" style="color:#757575;">Available Reservations</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="bi bi-file-earmark-arrow-up-fill text-primary" style="font-size: 3rem;"></i>
-                            <div class="ms-3">
-                                <p class="mb-2" style="color:#757575;">Open Reservations</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="bi bi-archive-fill text-primary" style="font-size: 3rem;"></i>
-                            <div class="ms-3">
-                                <p class="mb-2" style="color:#757575;">Borrowed</p>
-                                <h6 class="mb-0">$1234</h6>
-                            </div>
+                        <div class="ms-3">
+                            <p class="mb-2" style="color:#757575;">Available Items</p>
+                            <h6 class="mb-0" style="color:#009cff;"><?php echo (count($results)); ?></h6>
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="bi bi-graph-up-arrow text-primary" style="font-size: 3rem;"></i>
+                        <div class="ms-3">
+                            <p class="mb-2" style="color:#757575;">Available Reservations</p>
+                            <h6 class="mb-0">$1234</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="bi bi-file-earmark-arrow-up-fill text-primary" style="font-size: 3rem;"></i>
+                        <div class="ms-3">
+                            <p class="mb-2" style="color:#757575;">Open Reservations</p>
+                            <h6 class="mb-0">$1234</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="bi bi-archive-fill text-primary" style="font-size: 3rem;"></i>
+                        <div class="ms-3">
+                            <p class="mb-2" style="color:#757575;">Borrowed</p>
+                            <h6 class="mb-0">$1234</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container my-5  px-5">
+            <div class=" rounded h-100  text-center">
+                <form action="" method="post">
+                    <div class="btn-group" role="group">
+                        <input type="radio" class="btn-check" name="filter" value="ALL" id="btnradio1" autocomplete="off" checked="">
+                        <label class="btn btn-outline-primary" for="btnradio1">ALL</label>
+
+                        <input type="radio" class="btn-check" name="filter" value="BOOK" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">BOOK</label>
+
+                        <input type="radio" class="btn-check" name="filter" value="MAGAZINE" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">MAGAZINE</label>
+
+                        <input type="radio" class="btn-check" name="filter" value="DVD" id="btnradio4" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio4">DVD</label>
+                    </div>
+                </form>
+            </div>
+
+
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-4" id="search-results">
@@ -105,22 +136,21 @@ $results = $content->fetchAll();
                     echo '<div class="col">
                       <div class="card h-100 border-primary border-1 shadow-lg">
                         <img src="' . $row['work_img'] . '" class="card-img-top img-fluid" style="height: 350px; object-fit: cover;" alt="">
-                        <div class="card-body mt_auto">
+                        <div class="card-body mt-auto">
                           <h5 class="card-title text-primary">' . $row['work_title'] . '</h5>
                           <p class="card-text">' . $row['work_author'] . '</p>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-center">
-                          <a href="booking.php" class="btn btn-primary me-3">Book</a>
-                          <a href="details.php?item_id=' . $row['work_id'] . '"  class="btn btn-outline-primary" style="text-decoration:none;">Details</a>
+                          <a  class="btn btn-primary me-3" onclick="bookFunction()">Book</a>
+                          <a   onclick="detailsFunction()" class="btn btn-outline-primary" style="text-decoration:none;">Details</a>
                         </div>
                       </div>
                     </div>';
                 }
             } else {
-                echo "No Results Found";
+                echo "<h2 class='text-center text-danger'>No Results Found</h2>";
             }
             ?>
-
 
         </div>
 
@@ -145,21 +175,67 @@ $results = $content->fetchAll();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#search').keyup(function() {
-                var search = $(this).val();
-                $.ajax({
-                    type: 'POST',
-                    url: 'search.php', // replace with the file that processes the search query
-                    data: {
-                        search: search
-                    },
-                    success: function(response) {
-                        $('#search-results').html(response);
-                    }
-                });
-            });
-        });
+        $(document).ready(function(){
+  $('input[type=radio][name=filter]').change(function() {
+      var filterValue = $(this).val(); // get the value of the selected radio button
+      var searchValue = $('#search').val(); // get the value of the search input
+      $.ajax({
+          type: 'POST',
+          url: 'search.php',
+          data: { filter: filterValue, search: searchValue }, // send both the selected radio button value and search input value to the PHP script
+          success: function(response) {
+              // display the filtered results returned from the PHP script
+              $('#search-results').html(response);
+          }
+      });
+  });
+
+  $('#search').keyup(function() {
+      var search = $(this).val();
+      var filterValue = $('input[type=radio][name=filter]:checked').val(); // get the value of the checked radio button
+      $.ajax({
+          type: 'POST',
+          url: 'search.php',
+          data: {
+              search: search,
+              filter: filterValue // send both the search input value and checked radio button value to the PHP script
+          },
+          success: function(response) {
+              $('#search-results').html(response);
+          }
+      });
+  });
+});
+
+function bookFunction() {
+    let details =`<div class="modal" id="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Booking Confirmation</h5>
+          <button type="button" class="btn-close cloBtn"  data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>are you sure that you want to book this work ?</p>
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-secondary cloBtn"  data-bs-dismiss="modal">Cancel</a>
+          <a type="button" class="btn btn-primary">Confirm</a>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  document.getElementById("search-results").insertAdjacentHTML("beforebegin", details);
+  let modal=document.getElementById("modal");
+  modal.style.display = "block";
+
+  let closeButton = document.querySelectorAll(".cloBtn");
+  for (let i = 0; i < closeButton.length; i++) {
+    closeButton[i].addEventListener("click", function() {
+      modal.style.display = "none";
+    });
+  }};
+        
     </script>
 
 </body>
@@ -167,8 +243,12 @@ $results = $content->fetchAll();
 </html>
 
 <style>
+    .card {
+        transition: transform 0.3s ease;
+        transform-origin: center center;
+    }
+
     .card:hover {
         transform: scale(1.05);
-        transition: transform 0.3s ease;
     }
 </style>
