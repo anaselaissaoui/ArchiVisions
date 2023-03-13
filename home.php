@@ -141,11 +141,12 @@ $results = $content->fetchAll();
                           <p class="card-text">' . $row['work_author'] . '</p>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-center">
-                          <a  class="btn btn-primary me-3" onclick="bookFunction()">Book</a>
-                          <a   onclick="detailsFunction()" class="btn btn-outline-primary" style="text-decoration:none;">Details</a>
+                          <a id="' . $row['work_id'] . '" class="btn btn-primary me-3" onclick="bookFunction(' . $row['work_id'] . ')">Book</a>
+                          <a id="' . $row['work_id'] . '" onclick="detailsFunction()" class="btn btn-outline-primary" style="text-decoration:none;">Details</a>
                         </div>
                       </div>
                     </div>';
+
                 }
             } else {
                 echo "<h2 class='text-center text-danger'>No Results Found</h2>";
@@ -207,9 +208,13 @@ $results = $content->fetchAll();
   });
 });
 
-function bookFunction() {
-    let details =`<div class="modal" id="modal" tabindex="-1">
-    <div class="modal-dialog">
+function bookFunction(workId) {
+    if (workId === undefined) {
+        console.warn('workId is undefined: ', workId)
+        return;
+    }
+    const booking =`<div class="modal bg-dark bg-opacity-75 py-5" id="modal" tabindex="-1">
+    <div class="modal-dialog my-5">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Booking Confirmation</h5>
@@ -220,12 +225,12 @@ function bookFunction() {
         </div>
         <div class="modal-footer">
           <a type="button" class="btn btn-secondary cloBtn"  data-bs-dismiss="modal">Cancel</a>
-          <a type="button" class="btn btn-primary">Confirm</a>
+          <a href="./confirmBook.php?id=`+workId+`" type="button" class="btn btn-primary">Confirm</a>
         </div>
       </div>
     </div>
   </div>`;
-  document.getElementById("search-results").insertAdjacentHTML("beforebegin", details);
+  document.getElementById("search-results").insertAdjacentHTML("beforebegin", booking);
   let modal=document.getElementById("modal");
   modal.style.display = "block";
 
