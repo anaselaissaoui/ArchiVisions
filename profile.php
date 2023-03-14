@@ -53,7 +53,7 @@ $av_res = 3 - $current_value;}
     </script>
     <link rel="shortcut icon" href="./img/logo1.png" type="image/x-icon">
     <link rel="stylesheet" href="./style.css">
-    <title>ArchiVisions</title>
+    <title>My Profile</title>
 </head>
 
 <body style="background-color: #fff;">
@@ -129,37 +129,13 @@ $av_res = 3 - $current_value;}
         </div>
         <div class="container my-5  px-5">
             <div class=" rounded h-100  text-center">
-                <form action="" method="post">
-                    <div class="btn-group" role="group">
-                        <input type="radio" class="btn-check" name="filter" value="ALL" id="btnradio1"
-                            autocomplete="off" checked="">
-                        <label class="btn btn-outline-primary" for="btnradio1">ALL</label>
-
-                        <input type="radio" class="btn-check" name="filter" value="BOOK" id="btnradio2"
-                            autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio2">BOOK</label>
-
-                        <input type="radio" class="btn-check" name="filter" value="MAGAZINE" id="btnradio3"
-                            autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio3">MAGAZINE</label>
-
-                        <input type="radio" class="btn-check" name="filter" value="DVD" id="btnradio4"
-                            autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio4">DVD</label>
-                    </div>
-                </form>
+                
             </div>
 
 
         </div>
         <div class="row row-cols-1 row-cols-md-4 g-4" id="search-results">
-            <?php foreach ($results1 as $row) {
-                if ($row['mem_res'] >= 3) {
-                    echo "<h2 class='text-danger fw-bolder'>Sorry you reached the max of booking operations , try after you return a borrowed work or canceled booking.</h2>";
-                } else {
-                    include "cards.php";
-                }
-            }; ?>
+            
         </div>
 
 
@@ -181,91 +157,9 @@ $av_res = 3 - $current_value;}
             </div>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-    $(document).ready(function() {
-        $('input[type=radio][name=filter]').change(function() {
-            var filterValue = $(this).val(); // get the value of the selected radio button
-            var searchValue = $('#search').val(); // get the value of the search input
-            $.ajax({
-                type: 'POST',
-                url: 'search.php',
-                data: {
-                    filter: filterValue,
-                    search: searchValue
-                }, // send both the selected radio button value and search input value to the PHP script
-                success: function(response) {
-                    // display the filtered results returned from the PHP script
-                    $('#search-results').html(response);
-                }
-            });
-        });
 
-        $('#search').keyup(function() {
-            var search = $(this).val();
-            var filterValue = $('input[type=radio][name=filter]:checked')
-                .val(); // get the value of the checked radio button
-            $.ajax({
-                type: 'POST',
-                url: 'search.php',
-                data: {
-                    search: search,
-                    filter: filterValue // send both the search input value and checked radio button value to the PHP script
-                },
-                success: function(response) {
-                    $('#search-results').html(response);
-                }
-            });
-        });
-    });
-
-    function bookFunction(workId) {
-        if (workId === undefined) {
-            console.warn('workId is undefined: ', workId)
-            return;
-        }
-        const booking = `<div class="modal bg-dark bg-opacity-75 py-5" id="modal" tabindex="-1">
-    <div class="modal-dialog my-5">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Booking Confirmation</h5>
-          <button type="button" class="btn-close cloBtn"  data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>are you sure that you want to book this work ?</p>
-        </div>
-        <div class="modal-footer">
-          <a type="button" class="btn btn-secondary cloBtn"  data-bs-dismiss="modal">Cancel</a>
-          <a href="./confirmBook.php?id=` + workId + `" type="button" class="btn btn-primary">Confirm</a>
-        </div>
-      </div>
-    </div>
-  </div>`;
-        document.getElementById("search-results").insertAdjacentHTML("beforebegin", booking);
-        let modal = document.getElementById("modal");
-        modal.style.display = "block";
-
-        let closeButton = document.querySelectorAll(".cloBtn");
-        for (let i = 0; i < closeButton.length; i++) {
-            closeButton[i].addEventListener("click", function() {
-                modal.style.display = "none";
-            });
-        }
-    };
-    </script>
-
+   
 </body>
 
 </html>
-
-<style>
-.card {
-    transition: transform 0.3s ease;
-    transform-origin: center center;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-</style>

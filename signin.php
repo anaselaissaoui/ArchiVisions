@@ -44,32 +44,34 @@ require "database.php";
                     <div class="col-lg-6" style="display:flex;align-items: center; justify-content: center;">
                         <div class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             <h2 class="mb-5 text-primary text-center text-uppercase">Sign In</h2>
-                            <form>
+                            <form method="post">
                                 <div class="row g-3">
 
                                     <div class="col-md-12">
                                         <div class="form-floating">
-                                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                            <input type="email" class="form-control" name="email" placeholder="Email">
                                             <label for="email">Email</label>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-floating">
-                                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                            <input type="password" class="form-control" name="password" placeholder="Password">
                                             <label for="password">Password</label>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Sign In</button>
+                                        <button class="btn btn-primary w-100 py-3" name="submit" type="submit">Sign In</button>
                                     </div>
                                 </div>
                                 <?php
                                 if (isset($_POST['submit'])) {
+                                    echo "1";
 
                                 $Email = $_POST['email'];
                                 $Password = $_POST['password'];
-                                $Pass = md5($password);
+                                $Pass = md5($Password);
+                                
 
 
 
@@ -78,22 +80,31 @@ require "database.php";
                                 $error = "<div class='error'>*Your Email is required, try again.</div>";
                                 }
                                 else if (empty($Password)) {
-
                                 $error = "<div class='error'>*Password is required.</div>";
                                 } else {
-                                    $stmt = $conn->query("SELECT * FROM member WHERE Email='$Email' AND Password='$Pass'");
-                              
-                                      $row=$stmt->fetch();
+                                    echo "2";
+                                    $stmt = $conn->prepare("SELECT * FROM member WHERE mem_email=:email AND mem_pass=:password");
+                                    $stmt->bindParam(':email', $Email);
+                                    $stmt->bindParam(':password', $Pass);
+                                    $stmt->execute();
+                                    $rowCount = $stmt->rowCount();
+                                    echo "5";
+                                    if ($rowCount === 1) {
+                                        echo "6";
+                                        $row = $stmt->fetch();
+                                        echo "3";
 
 
-                                if ($row['Email'] === $Email && $pass === $row['Password']) {
+                                if ($row['mem_email'] === $Email && $Pass === $row['mem_pass']) {
+                                    echo "3";
                                 //
                                 $_SESSION['mem_name'] = $row['mem_name'];
                                 $_SESSION['mem_id'] = $row['mem_id'];
                                 $_SESSION['mem_username'] = $row['mem_username'];
 
-                                header("Location: home.php");
+                                header("Location: ./home.php");
                                 } else {
+
                                 $error = "<div class='error'>*the Email or the Password incorrect, try again.</div>";
                                 }
                                 }
@@ -101,7 +112,7 @@ require "database.php";
                                 if (!empty($error)) {
                                 echo $error;
                                 unset($error);
-                                }}
+                                }}}
                                 ?>
 
                             </form>

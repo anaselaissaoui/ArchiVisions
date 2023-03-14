@@ -71,4 +71,26 @@ VALUES
 ('The Catcher in the Rye', 'J.D. Salinger', './img/catcher_in_the_rye.jpg', 'New', 'Book', '1951-07-16', '2022-01-12', 224, 1),
 ('Lord of the Flies', 'William Golding', './img/lord_of_the_flies.jpg', 'Good condition', 'Book', '1954-09-17', '2022-02-27', 224, 1),
 
+-- creating the event that will run each 10minutes to check the date of the reservation if it passed the 24hours and if so then it will delete the row from my table booking 
+
+CREATE EVENT delete_booking_event
+ON SCHEDULE
+    EVERY 10 MINUTE
+DO
+    DELETE FROM booking
+    WHERE book_date < DATE_SUB(NOW(), INTERVAL 24 HOUR)
+    AND book_status = 'in progress';
+
+-- creating the trigger to update our work to not appera on my page because it's reserved ,
+DELIMITER //
+
+CREATE TRIGGER book_work
+AFTER INSERT ON booking
+FOR EACH ROW
+BEGIN
+    UPDATE works SET work_dispo = 0 WHERE work_id = NEW.work_id;
+END//
+
+DELIMITER ;
+
 

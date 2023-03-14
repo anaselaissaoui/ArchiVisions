@@ -1,6 +1,6 @@
 :root {
   --primary: #009cff;
-  --light: #F3F6F9;
+  --light: #f3f6f9;
   --dark: #191c24;
 }
 
@@ -10,7 +10,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  
+
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -22,7 +22,7 @@ body {
   z-index: -1;
 }
 
-.content>* {
+.content > * {
   margin-top: 0;
   padding-left: 0;
   padding-right: 0;
@@ -37,10 +37,8 @@ body {
   font-size: 12px;
 }
 
-
-
 .counter {
-  background-color:#f5f5f5;
+  background-color: #f5f5f5;
   padding: 20px 0;
   border-radius: 5px;
 }
@@ -59,6 +57,5 @@ body {
   margin-top: 10px;
   margin-bottom: 0;
   text-align: center;
-  color:var(--primary);
+  color: var(--primary);
 }
-

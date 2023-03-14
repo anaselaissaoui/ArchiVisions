@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </header>
 
     <main class="container">
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-3">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
                     <h6 class="section-title text-center text-primary text-uppercase">Join Us</h6>
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="col-lg-6">
                         <div class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             <form action="" method="post" enctype="multipart/form-data">
-                                <div class="row g-3">
+                                <div class="row g-2">
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="name" placeholder="Name" required>
@@ -185,6 +185,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100 py-3" type="submit">Register Now</button>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <span class="">Already have an account? <a href="./signin.php" class="have">Sign In</a> </span>
                                     </div>
                                 </div>
                             </form>
