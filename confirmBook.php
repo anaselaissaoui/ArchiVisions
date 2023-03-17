@@ -5,7 +5,7 @@ require "database.php";
 $work_id = $_GET['id'];
 $mem_id = $_SESSION['mem_id'];
 $book_date = date('Y-m-d H:i:s');
-$book_status = "in progress";
+$book_status = "IN PROGRESS";
 
 $stmt = $conn->prepare("INSERT INTO booking (book_date, book_status, mem_id, work_id) 
 VALUES (:book_date, :book_status, :mem_id, :work_id)");

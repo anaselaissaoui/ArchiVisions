@@ -71,6 +71,12 @@ VALUES
 ('The Catcher in the Rye', 'J.D. Salinger', './img/catcher_in_the_rye.jpg', 'New', 'Book', '1951-07-16', '2022-01-12', 224, 1),
 ('Lord of the Flies', 'William Golding', './img/lord_of_the_flies.jpg', 'Good condition', 'Book', '1954-09-17', '2022-02-27', 224, 1),
 
+
+
+
+INSERT INTO loan (loan_date, loan_ret_date, book_id)
+VALUES 
+('2023-03-16','2023-03-31', '10');
 -- creating the event that will run each 10minutes to check the date of the reservation if it passed the 24hours and if so then it will delete the row from my table booking 
 
 CREATE EVENT delete_booking_event
@@ -81,6 +87,16 @@ DO
     WHERE book_date < DATE_SUB(NOW(), INTERVAL 24 HOUR)
     AND book_status = 'in progress';
 
+
+CREATE EVENT loan
+ON SCHEDULE
+    EVERY 10 MINUTE
+DO
+    UPDATE loan
+    SET loan_status = 'LATE'
+    WHERE loan_eff_ret_date IS NULL
+    AND loan_date < DATE_SUB(NOW(), INTERVAL 15 DAY)
+    AND book_status = 'OPEN';
 -- creating the trigger to update our work to not appera on my page because it's reserved ,
 DELIMITER //
 
@@ -92,5 +108,40 @@ BEGIN
 END//
 
 DELIMITER ;
+
+
+
+
+DELIMITER //
+CREATE TRIGGER tr_booking_delete AFTER DELETE ON booking
+FOR EACH ROW
+BEGIN
+  IF OLD.book_date < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND OLD.book_status = 'in progress' THEN
+    UPDATE member SET mem_res = mem_res + 1 WHERE mem_id = OLD.mem_id;
+  END IF;
+END//
+DELIMITER;
+
+DELIMITER //
+CREATE TRIGGER tr_loan_status_update
+AFTER UPDATE ON loan
+FOR EACH ROW
+  IF NEW.loan_status = 'CLOSED' AND OLD.loan_status != 'CLOSED' THEN
+    UPDATE booking SET book_status = 'CLOSED'
+    WHERE book_id = NEW.book_id;
+  END IF//
+  DELIMITER;
+
+
+
+CREATE TRIGGER update_mem_pen
+AFTER UPDATE ON loan
+FOR EACH ROW
+  IF NEW.loan_status = 'LATE' AND OLD.loan_status != 'LATE' THEN
+    UPDATE member SET mem_penalty = mem_penalty + 1
+    WHERE mem_id = (
+      SELECT mem_id FROM books WHERE book_id = NEW.book_id
+    );
+  END IF;
 
 

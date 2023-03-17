@@ -1,61 +1,51 @@
 :root {
-  --primary: #009cff;
-  --light: #f3f6f9;
-  --dark: #191c24;
+    --primary: #009cff;
+    --light: #f3f6f9;
+    --dark: #191c24;
 }
 
-body {
-  margin: 0;
-  font-family: "Heebo", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
 
 .backcurve {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
 }
-
+/* 
 .content > * {
-  margin-top: 0;
-  padding-left: 0;
-  padding-right: 0;
-}
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+} */
 
 .error {
-  color: red;
-  border-radius: 4px;
-  width: 100%;
-  text-align: start;
-  margin: 0px 6px;
-  font-size: 12px;
+    color: red;
+    border-radius: 4px;
+    width: 100%;
+    text-align: start;
+    margin: 0px 6px;
+    font-size: 12px;
 }
 
 .counter {
-  background-color: #f5f5f5;
-  padding: 20px 0;
-  border-radius: 5px;
+    background-color: #f5f5f5;
+    padding: 20px 0;
+    border-radius: 5px;
 }
 
 .count-title {
-  font-size: 26px;
-  font-weight: normal;
-  margin-top: 10px;
-  margin-bottom: 0;
-  text-align: center;
+    font-size: 26px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .count-text {
-  font-size: 13px;
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 0;
-  text-align: center;
-  color: var(--primary);
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    color: var(--primary);
 }
