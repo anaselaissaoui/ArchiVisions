@@ -79,6 +79,11 @@ $results5 = $content5->fetchAll();
 </head>
 
 <body>
+
+<div class="modal-open">
+        <div class="modal fade show" id="exampleModalCenter" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: hidden;" aria-modal="true">
+            </div></div>
+                            
     <div class="container-xxxl position-relative bg-white d-flex p-0">
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
@@ -105,8 +110,7 @@ $results5 = $content5->fetchAll();
         </div>
 
         <!-- Sidebar End -->
-
-
+        
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
@@ -133,6 +137,7 @@ $results5 = $content5->fetchAll();
 
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
+            
 
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
@@ -206,7 +211,7 @@ $results5 = $content5->fetchAll();
                                                 </div>
                                                 <div class="card-footer d-flex align-items-center justify-content-center">
                                                 <a data-work-id="'.$row['work_id'].'" class="btn btn-danger me-3" >Delete</a>
-                                                <a  onclick="detailsFunction()" class="btn btn-outline-primary" style="text-decoration:none;">Details</a>
+                                                <a   data-workk-id="'.$row['work_id'].'" class="btn  btn-outline-primary" style="text-decoration:none;">Details</a>
                                                 </div>
                                             </div>
                                             </div>';
@@ -216,6 +221,7 @@ $results5 = $content5->fetchAll();
                                     }
                     
                     ?> </div></div>
+                    
             </div>
             <!-- Recent Sales End -->
 
@@ -240,6 +246,7 @@ $results5 = $content5->fetchAll();
 
 
         </div>
+       
 
 
 
@@ -263,7 +270,29 @@ $(document).ready(function() {
             }
         });
     });
+
+    
+
+
+  $('a[data-workk-id]').click(function() {
+    var workId = $(this).data('workk-id');
+
+    $.ajax({
+      url: 'details.php',
+      type: 'POST',
+      data: { work_id: workId },
+      success: function(response) {
+        console.log('done');
+        $('#exampleModalCenter').html(response);
+        $('#exampleModalCenter').modal('show');
+      },
+      error: function() {
+        alert('Error fetching work data');
+      }
+    });
+  });
 });
+
 </script>
 
 
@@ -440,15 +469,25 @@ $(document).ready(function() {
             margin-left: -250px;
         }
 
-        .content {
-            width: calc(100% - 250px);
-        }
-
         .content.open {
             width: 100%;
             margin-left: 0;
         }
     }
+    .line {
+  position: relative;
+  padding-bottom: 20px; }
+  .line:after {
+    left: 50%;
+    bottom: 0;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: absolute;
+    content: "";
+    width: 70px;
+    height: 1px;
+    background: #ccc; }
 
     @media (max-width: 991.98px) {
         .sidebar {
@@ -470,4 +509,9 @@ $(document).ready(function() {
             margin-left: 15px;
         }
     }
+
+
+
+
+
 </style>

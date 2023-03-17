@@ -22,7 +22,7 @@ if (count($results) > 0) {
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-center">
                             <a id="' . $row['work_id'] . '" class="btn btn-primary me-3" onclick="bookFunction(' . $row['work_id'] . ')">Book</a>
-                            <a id="' . $row['work_id'] . '" onclick="detailsFunction()" class="btn btn-outline-primary" style="text-decoration:none;">Details</a>
+                            <a   data-workk-id="'.$row['work_id'].'" class="btn  btn-outline-primary" style="text-decoration:none;">Details</a>
                             </div>
                         </div>
                         </div>';

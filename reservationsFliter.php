@@ -39,7 +39,7 @@ if (count($results3) > 0) {
                 <p class="card-text">' . $row['work_author'] . '</p>
               </div>
               <div class="card-footer d-flex align-items-center justify-content-center">
-                <a onclick="detailsFunction()" class="btn btn-outline-primary">Details</a>
+              <a   data-workk-id="'.$row['work_id'].'" class="btn  btn-outline-primary"  style="text-decoration:none;">Details</a>
               </div>
             </div>
           </div>';

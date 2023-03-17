@@ -59,6 +59,11 @@ foreach ($results1 as $row) {
 
 <body style="background-color: #fff;">
 
+<div class="modal-open">
+        <div class="modal fade show" id="exampleModalCenter" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" style="display: hidden;" aria-modal="true">
+            </div></div>
+                          
+
 
     <header>
         <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
@@ -215,6 +220,24 @@ foreach ($results1 as $row) {
                     }
                 });
             });
+            $('a[data-workk-id]').click(function() {
+    var workId = $(this).data('workk-id');
+
+    $.ajax({
+      url: 'details.php',
+      type: 'POST',
+      data: { work_id: workId },
+      success: function(response) {
+        console.log('done');
+        $('#exampleModalCenter').html(response);
+        $('#exampleModalCenter').modal('show');
+      },
+      error: function() {
+        alert('Error fetching work data');
+      }
+    });
+  });
+
         });
 
         function bookFunction(workId) {

@@ -36,28 +36,56 @@ require "database.php";
     <main class="container">
         <div class="wrapper">
             <div class="logo">
-                <img src="./img/admin.png" alt="">
+                <img src="./img/works.png" alt="">
             </div>
             <div class="text-center mt-4 name">
-                Admin
+                Add Work
             </div>
             <form class="p-3 mt-3" method="post" enctype="multipart/form-data">
-                <div class="form-field d-flex align-items-center">
-                    <span class="bi bi-person"></span>
-                    <input type="text" name="name" id="name" placeholder="Name">
-                </div>
-                <div class="form-field d-flex align-items-center">
-                    <span class="bi bi-at"></span>
-                    <input type="text" name="email" id="email" placeholder="Email">
-                </div>
-                <div class="form-field d-flex align-items-center">
-                    <span class="bi bi-key"></span>
-                    <input type="password" name="password" id="pwd" placeholder="Password">
-                </div>
-                <div class="form-field d-flex align-items-center">
-                    <span class="bi bi-key"></span>
-                    <input type="password" name="re-password" id="pwd" placeholder="Confirm Password">
-                </div>
+    <div class="form-field d-flex align-items-center">
+        <span class="bi bi-cursor-text"></span>
+        <input type="text" name="title" id="title" placeholder="Title" />
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <span class="bi bi-person"></span>
+        <input type="text" name="author" id="author" placeholder="Author" />
+    </div>
+    <div class="form-field d-flex align-items-center">
+  <span class="bi bi-image"></span>
+  <label for="image">Upload Image</label>
+  <input type="file" name="image" id="image"accept="image/*">
+</div>
+    <div class="form-field d-flex align-items-center">
+        <span class="bi bi-bricks"></span>
+        <select name="state" id="state">
+            <option value="4">New</option>
+            <option value="3">Used - Like New</option>
+            <option value="2">Used - Good</option>
+            <option value="1">Used - Bad</option>
+        </select>
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <span class="bi bi-person"></span>
+        <select name="type" id="type">
+            <option value="BOOK">Book</option>
+            <option value="DVD">DVD</option>
+            <option value="MAGAZINE">Magazine</option>
+        </select>
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <span class="bi bi-person"></span>
+        <input type="number" name="pages" id="pages" placeholder="Pages" />
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <span class="bi bi-calendar"></span>
+        <input type="date" name="pub_d" id="pub_d" placeholder="Publish Date" />
+    </div>
+    <div class="form-field d-flex align-items-center">
+        <span class="bi bi-calendar"></span>
+        <input type="date" name="purch_d" id="purch_d" placeholder="Purchase Date" />
+    </div>
+
+            
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title  = $_POST['title'];
@@ -73,7 +101,7 @@ require "database.php";
     if (!isset($title) || !isset($author) || !isset($state) 
     || !isset($type) || !isset($pages) || !isset($pub_d) 
     || !isset($purch_d) || $_FILES['image']['error'] === UPLOAD_ERR_NO_FILE) {
-        echo '<h6 class="tex-danger">**please enter all the values ....</h6>';
+        echo '<h6 class="text-danger">**please enter all the values</h6>';
     } else {
 
 	$imagename = $_FILES['image']['tmp_name'];
@@ -117,7 +145,7 @@ require "database.php";
 
                 ?>
 
-                <button type="submit" class="btn mt-3">Sign Up</button>
+                <button type="submit" class="btn mt-3">Add</button>
             </form>
 
         </div>
@@ -137,10 +165,10 @@ require "database.php";
 </html>
 <style>
     .wrapper {
-        max-width: 350px;
+        max-width: 600px;
         min-height: 500px;
         margin: 20px auto;
-        padding: 40px 30px 30px 30px;
+        padding: 20px 30px 30px 30px;
         background-color: #ecf0f3;
         border-radius: 15px;
         box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
@@ -167,7 +195,7 @@ require "database.php";
         color: #555;
     }
 
-    .wrapper .form-field input {
+    .wrapper .form-field input , select{
         width: 100%;
         display: block;
         border: none;
@@ -179,7 +207,7 @@ require "database.php";
         /* border: 1px solid red; */
     }
 
-    .wrapper .form-field {
+    .wrapper .form-field  {
         padding-left: 10px;
         margin-bottom: 20px;
         border-radius: 20px;
@@ -222,4 +250,36 @@ require "database.php";
             padding: 40px 15px 15px 15px;
         }
     }
+   
+    .wrapper .form-field label{
+        width: 145%;
+        display: block;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.2rem;
+        color: #666;
+        padding-left:10px;
+    }
+
+    input[type="file"]::-webkit-file-upload-button {
+  color: #fff;
+  border-radius: 25px;
+  box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+ 
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+ input[type="file"] {
+  opacity: 0;
+}
+
+
+    
 </style>
