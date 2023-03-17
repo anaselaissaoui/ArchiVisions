@@ -36,7 +36,7 @@ require "database.php";
     <main class="container">
         <div class="wrapper">
             <div class="logo">
-                <img src="./img/works.svg" alt="">
+                <img src="./img/admin.png" alt="">
             </div>
             <div class="text-center mt-4 name">
                 Admin
